@@ -1,0 +1,124 @@
+{
+  "name": "cofense-vision",
+  "version": "1.0.0",
+  "category": "Email Security",
+  "label": "Cofense Vision",
+  "description": "Cofense Vision is a security solution designed to help organizations quickly detect, locate, and quarantine phishing emails across all employee inboxes.",
+  "publisher": "Fortinet CSE",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "contributor": "Hariharan Devaraj",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-cofense-vision/blob/release/1.0.0/docs/readme.md",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "Specify the URL of the Cofense Vision server to connect and perform automated operations.",
+        "type": "text",
+        "name": "hostname",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "tooltip": "Specify the URL of the Cofense Vision server to connect and perform automated operations."
+      },
+      {
+        "title": "Username",
+        "description": "Specify the name of the client to connect to the endpoint and perform automated operations",
+        "type": "text",
+        "name": "username",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "tooltip": "Specify the name of the client to connect to the endpoint and perform automated operations"
+      },
+      {
+        "title": "Password",
+        "description": "Specify the password of the client to connect to the endpoint and perform automated operations",
+        "type": "password",
+        "name": "password",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "tooltip": "Specify the password of the client to connect to the endpoint and perform automated operations"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is selected, i.e., set to true.",
+        "name": "verify_ssl",
+        "type": "checkbox",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true,
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is selected, i.e., set to true."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "Search Email",
+      "operation": "search_email",
+      "category": "investigation",
+      "description": "Search for emails from Cofense Vision based on the email subject and sender email address you have provided.",
+      "parameters": [
+        {
+          "title": "Email Subject",
+          "description": "Specify the comma-separated email subjects based on which you want to retrieve emails.",
+          "type": "text",
+          "name": "emailSubject",
+          "tooltip": "Specify the comma-separated email subjects based on which you want to retrieve emails.",
+          "required": true,
+          "visible": true,
+          "editable": true
+        },
+        {
+          "title": "Sender Email Address",
+          "description": "Specify the comma-separated sender email address based on which you want to retrieve emails.",
+          "type": "text",
+          "name": "senderEmailAddress",
+          "tooltip": "Specify the comma-separated sender email address based on which you want to retrieve emails.",
+          "required": true,
+          "visible": true,
+          "editable": true
+        }
+      ],
+      "annotation": "search_email",
+      "enabled": true,
+      "output_schema": {}
+    },
+    {
+      "title": "Quarantine Email",
+      "operation": "quarantine_email",
+      "category": "investigation",
+      "description": "Quarantine an emails in Cofense Vision based on the recipient address and internal message ID you have provided.",
+      "parameters": [
+        {
+          "title": "Recipient Address",
+          "description": "Specify the comma-separated recipient email address of the account containing the emails to be quarantined.",
+          "type": "text",
+          "name": "recipientAddress",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the comma-separated recipient email address of the account containing the emails to be quarantined."
+        },
+        {
+          "title": "Internet Message ID",
+          "description": "Specify the ID of any emails in that account to be quarantined, with each internetMessageId enclosed in angle brackets.",
+          "type": "text",
+          "name": "internetMessageId",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the ID of any emails in that account to be quarantined, with each internetMessageId enclosed in angle brackets. For e.g <513C8CD8-E593-4DC4-82BF-6202E8AC95CB@example.com>",
+          "placeholder": "For e.g <513C8CD8-E593-4DC4-82BF-6202E8AC95CB@example.com>"
+        }
+      ],
+      "annotation": "quarantine_email",
+      "enabled": true,
+      "output_schema": {}
+    }
+  ]
+}
